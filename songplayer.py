@@ -3,7 +3,7 @@ import wave
 import sys
 
 song = sys.argv[1]
-print song
+print >> song
 chunk = 1024
 
 wf = wave.open('%s.wav' % song, 'rb')
@@ -11,11 +11,11 @@ wf = wave.open('%s.wav' % song, 'rb')
 p = pyaudio.PyAudio()
 
 # open stream based on the wave object which has been input.
-stream = p.open(format =
+stream = p.open(format=
                 p.get_format_from_width(wf.getsampwidth()),
-                channels = wf.getnchannels(),
-                rate = wf.getframerate(),
-                output = True)
+                channels=wf.getnchannels(),
+                rate=wf.getframerate(),
+                output=True)
 
 # read data (based on the chunk size)
 data = wf.readframes(chunk)
@@ -27,5 +27,5 @@ while data != '':
     data = wf.readframes(chunk)
 
 # cleanup stuff.
-stream.close()    
+stream.close()
 p.terminate()
