@@ -14,12 +14,12 @@ ser.isOpen()
 
 print 'Enter your commands below.\r\nInsert "exit" to leave the application.'
 
-input=1
-while 1 :
+input = 1
+while 1:
     # get keyboard input
     input = raw_input(">> ")
-        # Python 3 users
-        # input = input(">> ")
+    # Python 3 users
+    # input = input(">> ")
     if input == 'exit':
         ser.close()
         exit()
