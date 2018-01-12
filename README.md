@@ -1,7 +1,7 @@
 # Jarvis 3.1
 **Dependencies**:
 
-    speech_recognition,
+    SpeechRecognition,
     pyttsx,
     pyserial,
     pyaudio
