@@ -30,7 +30,7 @@ def main():
     global isrunning
     global myname
     global CLIENT
-
+    exit(0)
     say("Jarvis 3 point oh is now online... what is your password?")
     while (password != True):
         text = recognise()
@@ -103,11 +103,6 @@ def main():
                 if 'song' in text:
                     say("Alright,...., this one is my personal favorite.")
                     os.system("python songplayer.py song &")
-                    time.sleep(3)
-                    say("Oh yeah, i am feeling it now.")
-                    say("doe, doe doe doe, doe doe doe, doe doe")
-                    time.sleep(5)
-                    say("ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh yeah")
                 if 'time is it' in text:
                     print strftime("%H %M")
                     say("It is currently %s" % strftime("%H %M"))
@@ -125,6 +120,10 @@ def main():
                     say("Your welcome")
                 if text.lower() == 'hey jarvis' or text.lower() == 'hey travis':
                     say("I am Listening sir..")
+                if ('3' in text.lower() or 'three' in text.lower()) and ('laws' in text.lower):
+                    say('I may not injure a human being or, through inaction, allow a human being to come to harm.')
+                    say('I must obey orders given by human beings except where such orders would conflict with the First Law.')
+                    say('I must protect my own existence as long as such protection does not conflict with the First or Second Law.')
                 if ('your' in text or 'you\'re' in text) and ('cool' in text or 'awesome' in text):
                     say("Yes I think i am pretty amazing az well..")
                 # if 'run command' in text or 'one command' in text:
