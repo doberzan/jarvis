@@ -3,10 +3,10 @@ import wave
 import sys
 
 song = sys.argv[1]
-print >> song
+print (song)
 chunk = 1024
 
-wf = wave.open('%s.wav' % song, 'rb')
+wf = wave.open('C:\\Users\\Declan\\PycharmProjects\\jarvis\\%s.wav' % song, 'rb')
 
 p = pyaudio.PyAudio()
 

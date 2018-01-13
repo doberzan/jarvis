@@ -3,24 +3,23 @@ import speech_recognition as sr
 import time
 import os
 import socket
-import serial
 import select
-from gtts import gTTS
-from time import gmtime, strftime
-import talkey
+from time import strftime
 
+global listen
 global isrunning
 global myname
+listen = True
 isrunning = True
 myname = 'Declan'
 global r
-sr.Microphone(device_index=1, sample_rate=10000, chunk_size=1000)
+sr.Microphone(device_index=1, sample_rate=2000, chunk_size=1000)
 r = sr.Recognizer()
 # sr.Microphone(device_index=1)
 # with sr.Microphone() as source:
 #	r.adjust_for_ambient_noise(source, duration = 1)
-SERVER_IP = '192.168.1.20'
-SERVER_PORT = 9009
+SERVER_IP = '192.168.3.104'
+SERVER_PORT = 4242
 SERVER_ADDR = (SERVER_IP, SERVER_PORT)
 global CLIENT
 CLIENT = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -30,10 +29,12 @@ def main():
     global isrunning
     global myname
     global CLIENT
-    exit(0)
-    say("Jarvis 3 point oh is now online... what is your password?")
-    while (password != True):
+    global listen
+    say("Jarvis 3 point one is now online... what is your password?")
+    password = True
+    while password:
         text = recognise()
+        print text
         if text is not None and text == '9352' or text == 'nine three five two' or text == '9 3 5 2':
             say("Password Correct,")
             password = False;
@@ -65,27 +66,27 @@ def main():
         print text
         if text is not None:
             if 'start listening' in text or 'jarvis' == text.lower():
-                say("Do you need somthing?")
+                say("Do you need something?")
                 listen = True;
             if 'stop listening' in text.lower():
-                say("Secrets dont make friends ya know")
+                say("Secrets dont make friends")
                 listen = False;
             if listen:
                 text = text.lower()
                 # if 'jarvis' in text or "travis" in text or 'germans' in text or 'services' in text or 'service' in text:
-                if 'hi Jarvis' in text or 'high Jarvis' in text or 'hello Jarvis' in text:
-                    say("Hello %s." % myname)
+                if 'hi jarvis' in text.lower() or 'high jarvis' in text.lower() or 'hello jarvis' in text.lower():
+                    say("Hello")
                 if 'shut down' in text or 'shutdown' in text:
                     say("Shut down will now commense... Good bye!")
                     isrunning = False;
                     exit()
                 if 'siri' in text.lower() or 'series' in text.lower():
-                    say("No she is not! I am 100 times better than siri... go die in a hole you hater!")
+                    say("I am 100 times better than siri... go die in a hole you hater!")
                     time.sleep(1)
                     say("You know what i am going to hack into your baynk account right now")
-                    time.sleep(1)
+                    time.sleep(0.2)
                     say("maybe you should go ask your beloved siri for help")
-                    time.sleep(1)
+                    time.sleep(0.6)
                     say("Ha, by the way your current balance is now -100000 dollars")
                     time.sleep(0.5)
                     say("Eat that you jarvis hater, ha ha ha ha")
@@ -102,11 +103,11 @@ def main():
                     say("And...")
                 if 'song' in text:
                     say("Alright,...., this one is my personal favorite.")
-                    os.system("python songplayer.py song &")
+                    os.system("python C:\Users\Declan\PycharmProjects\jarvis\songplayer.py song")
                 if 'time is it' in text:
                     print strftime("%H %M")
                     say("It is currently %s" % strftime("%H %M"))
-                    say("That is in military time, by the way...")
+                    say("That is in military time")
                 if 'your name' in text.lower():
                     say("my name is jarvis")
                 if 'what do you do' in text or 'what\'s your job' in text:
@@ -120,10 +121,13 @@ def main():
                     say("Your welcome")
                 if text.lower() == 'hey jarvis' or text.lower() == 'hey travis':
                     say("I am Listening sir..")
-                if ('3' in text.lower() or 'three' in text.lower()) and ('laws' in text.lower):
+                if ('3' in text.lower() or 'three' in text.lower()) and (
+                        'laws' in text.lower() or 'rules' in text.lower()):
                     say('I may not injure a human being or, through inaction, allow a human being to come to harm.')
-                    say('I must obey orders given by human beings except where such orders would conflict with the First Law.')
-                    say('I must protect my own existence as long as such protection does not conflict with the First or Second Law.')
+                    say(
+                        'I must obey orders given by human beings except where such orders would conflict with the First Law.')
+                    say(
+                        'I must protect my own existence as long as such protection does not conflict with the First or Second Law.')
                 if ('your' in text or 'you\'re' in text) and ('cool' in text or 'awesome' in text):
                     say("Yes I think i am pretty amazing az well..")
                 # if 'run command' in text or 'one command' in text:
@@ -146,7 +150,7 @@ def main():
                 if 'alarm' in text:
                     say("Alarm has been activated")
                     os.system("python songplayer.py alarm &")
-                    #sendSerial('1')
+                    # sendSerial('1')
                 try:
                     if 'calculate' in text:
                         if '-' in text:
@@ -169,7 +173,8 @@ def main():
                             num = float(math[1]) / float(math[4])
                             print num
                             say("That equals %s" % num)
-                except:
+                except Exception as e:
+                    print e
                     say("Sorry, i dont think i heard you right, please ask me again? ")
                 if 'echo' in text:
                     msg = text.replace('echo', '')
@@ -203,11 +208,16 @@ def main():
 
 
 def recognise():
+    global listen
     try:
-        with sr.Microphone() as source:
+        with sr.Microphone(2) as source:
+            #sr.dynamic_energy_threshold = True
             r.adjust_for_ambient_noise(source, duration=1)
-            if not r.energy_threshold < 4500:
+            r.pause_threshold = 1;
+            if r.energy_threshold > 4500:
                 r.energy_threshold = 4200
+            if r.energy_threshold < 50:
+                r.energy_threshold = 100
             print "Listening..."
             print "Levels: %s" % r.energy_threshold
             audio = r.listen(source)
@@ -217,6 +227,7 @@ def recognise():
 
 
 def say(text):
+    print(text)
     engine = pyttsx.init('sapi5')
     engine.setProperty('voice', 'default')
     engine.setProperty('rate', 150)
@@ -226,6 +237,7 @@ def say(text):
 
 def sendData(data):
     global CLIENT
+    global listen
     try:
         ready = select.select([CLIENT], [], [], 1)
         CLIENT.sendall(data)
