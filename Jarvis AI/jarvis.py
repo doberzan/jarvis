@@ -1,10 +1,13 @@
-import pyttsx3
+import pyttsx
 import speech_recognition as sr
 import time
 import os
 import socket
+import serial
 import select
+from gtts import gTTS
 from time import gmtime, strftime
+import talkey
 
 global isrunning
 global myname
@@ -27,9 +30,9 @@ def main():
     global isrunning
     global myname
     global CLIENT
+    exit(0)
     say("Jarvis 3 point oh is now online... what is your password?")
-    password = True;
-    while (password):
+    while (password != True):
         text = recognise()
         if text is not None and text == '9352' or text == 'nine three five two' or text == '9 3 5 2':
             say("Password Correct,")
@@ -47,7 +50,7 @@ def main():
                     say("Successfully connected to server.")
                     break;
                 except Exception as e:
-                    print(e)
+                    print e
                     say("Could not connect to server. Proceding with launch.")
                     break;
             elif ("no" in text.lower()):
@@ -59,7 +62,7 @@ def main():
     listen = True;
     while (isrunning):
         text = recognise()
-        print(text)
+        print text
         if text is not None:
             if 'start listening' in text or 'jarvis' == text.lower():
                 say("Do you need somthing?")
@@ -91,7 +94,7 @@ def main():
                     s.connect(("8.8.8.8", 80))
                     ip = s.getsockname()[0]
                     s.close()
-                    print(ip)
+                    print ip
                     say("Your eyepee is %s" % ip)
                 if 'how are you' in text:
                     say("I am doing very well, thanks for asking.")
@@ -100,13 +103,8 @@ def main():
                 if 'song' in text:
                     say("Alright,...., this one is my personal favorite.")
                     os.system("python songplayer.py song &")
-                    time.sleep(3)
-                    say("Oh yeah, i am feeling it now.")
-                    say("doe, doe doe doe, doe doe doe, doe doe")
-                    time.sleep(5)
-                    say("ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh yeah")
                 if 'time is it' in text:
-                    print(strftime("%H %M"))
+                    print strftime("%H %M")
                     say("It is currently %s" % strftime("%H %M"))
                     say("That is in military time, by the way...")
                 if 'your name' in text.lower():
@@ -122,6 +120,10 @@ def main():
                     say("Your welcome")
                 if text.lower() == 'hey jarvis' or text.lower() == 'hey travis':
                     say("I am Listening sir..")
+                if ('3' in text.lower() or 'three' in text.lower()) and ('laws' in text.lower):
+                    say('I may not injure a human being or, through inaction, allow a human being to come to harm.')
+                    say('I must obey orders given by human beings except where such orders would conflict with the First Law.')
+                    say('I must protect my own existence as long as such protection does not conflict with the First or Second Law.')
                 if ('your' in text or 'you\'re' in text) and ('cool' in text or 'awesome' in text):
                     say("Yes I think i am pretty amazing az well..")
                 # if 'run command' in text or 'one command' in text:
@@ -144,28 +146,28 @@ def main():
                 if 'alarm' in text:
                     say("Alarm has been activated")
                     os.system("python songplayer.py alarm &")
-                    ##sendSerial('1')
+                    #sendSerial('1')
                 try:
                     if 'calculate' in text:
                         if '-' in text:
                             math = text.split(' ')
                             num = float(math[1]) - float(math[3])
-                            print(num)
+                            print num
                             say("That equals %s" % num)
                         if '+' in text:
                             math = text.split(' ')
                             num = float(math[1]) + float(math[3])
-                            print(num)
+                            print num
                             say("That equals %s" % num)
                         if '*' in text or 'times' in text:
                             math = text.split(' ')
                             num = float(math[1]) * float(math[3])
-                            print(num)
+                            print num
                             say("That equals %s" % num)
                         if '/' in text or 'divided' in text:
                             math = text.split(' ')
                             num = float(math[1]) / float(math[4])
-                            print(num)
+                            print num
                             say("That equals %s" % num)
                 except:
                     say("Sorry, i dont think i heard you right, please ask me again? ")
@@ -206,16 +208,16 @@ def recognise():
             r.adjust_for_ambient_noise(source, duration=1)
             if not r.energy_threshold < 4500:
                 r.energy_threshold = 4200
-            print("Listening...")
-            print("Levels: %s" % r.energy_threshold)
+            print "Listening..."
+            print "Levels: %s" % r.energy_threshold
             audio = r.listen(source)
             return r.recognize_google(audio)
     except:
-        pass
+        return None
 
 
 def say(text):
-    engine = pyttsx3.init('sapi5')
+    engine = pyttsx.init('sapi5')
     engine.setProperty('voice', 'default')
     engine.setProperty('rate', 150)
     engine.say(text)
