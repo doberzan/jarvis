@@ -30,7 +30,7 @@ def main():
     global myname
     global CLIENT
     global listen
-    say("Jarvis 3 point one is now online... what is your password?")
+    say("Jarvis is now online... what is your password?")
     password = True
     while password:
         text = recognise()
@@ -103,7 +103,7 @@ def main():
                     say("And...")
                 if 'song' in text:
                     say("Alright,...., this one is my personal favorite.")
-                    os.system("python C:\Users\Declan\PycharmProjects\jarvis\songplayer.py song")
+                    os.system("python songplayer.py song")
                 if 'time is it' in text:
                     print strftime("%H %M")
                     say("It is currently %s" % strftime("%H %M"))
@@ -228,7 +228,7 @@ def recognise():
 
 def say(text):
     print(text)
-    engine = pyttsx.init('sapi5')
+    engine = pyttsx.init('espeak')
     engine.setProperty('voice', 'default')
     engine.setProperty('rate', 150)
     engine.say(text)
