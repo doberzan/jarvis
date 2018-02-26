@@ -5,6 +5,7 @@ import os
 import socket
 import select
 from time import strftime
+import cv2
 
 global listen
 global isrunning
@@ -12,6 +13,12 @@ global myname
 listen = True
 isrunning = True
 myname = 'Declan'
+imagePath = "./face_rec/faces/"
+cascPath = "./face_rec/haarcascade_frontalface_default.xml"
+faceCascade = cv2.CascadeClassifier(cascPath)
+recognizer = cv2.createLBPHFaceRecognizer()
+images, labels = get_images_and_labels(imagePath)
+#cv2.destroyAllWindows()
 global r
 sr.Microphone(device_index=1, sample_rate=2000, chunk_size=1000)
 r = sr.Recognizer()
@@ -205,7 +212,6 @@ def main():
                     sendData('[FORWARD] ' + text)
         else:
             pass
-
 
 def recognise():
     global listen
