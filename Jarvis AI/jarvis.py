@@ -2,41 +2,42 @@ import pyttsx
 import speech_recognition as sr
 import time
 import os
+import threading
 import socket
 import select
 from time import strftime
 import cv2
+from jarvis_security_cam import Security_Camera as sc
 
 global listen
 global isrunning
 global myname
+global r
+global CLIENT
+
 listen = True
 isrunning = True
 myname = 'Declan'
-imagePath = "./face_rec/faces/"
-cascPath = "./face_rec/haarcascade_frontalface_default.xml"
-faceCascade = cv2.CascadeClassifier(cascPath)
-recognizer = cv2.createLBPHFaceRecognizer()
-images, labels = get_images_and_labels(imagePath)
-#cv2.destroyAllWindows()
-global r
-sr.Microphone(device_index=1, sample_rate=2000, chunk_size=1000)
-r = sr.Recognizer()
-# sr.Microphone(device_index=1)
-# with sr.Microphone() as source:
-#	r.adjust_for_ambient_noise(source, duration = 1)
 SERVER_IP = '192.168.3.104'
 SERVER_PORT = 4242
 SERVER_ADDR = (SERVER_IP, SERVER_PORT)
-global CLIENT
 CLIENT = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+sr.Microphone(device_index=1, sample_rate=2000, chunk_size=1000)
+r = sr.Recognizer()
+def security_cam():
+    print 'Recording'
+    cam1 = sc()
+    cam1.record()
+    return
 
 def main():
     global isrunning
     global myname
     global CLIENT
     global listen
+    record = threading.Thread(target=security_cam)
+    record.start()
     say("Jarvis is now online... what is your password?")
     password = True
     while password:
