@@ -1,25 +1,25 @@
 ## PORT 21 | FTP(File Transfer Protocal),
 - Protocal: `TCP`
-- Common Server Software:
-... vsftpd:
-... OS: `Unix`
-... Guest: `anonymous anonymous`
-... ProFTPD:
-... OS: `Unix, Windows`
-... Guest: `anonymous/ftp <email>`
-... CerberusFTP:   
-... OS: `Windows-based`
-... Guest: `None`
+  - Common Server Software:
+    - vsftpd:
+      - OS: `Unix`
+      - Guest: `anonymous anonymous`
+    - ProFTPD:
+      - OS: `Unix, Windows`
+      - Guest: `anonymous/ftp <email>`
+    - CerberusFTP:   
+      - OS: `Windows-based`
+      - Guest: `None`
 	
 ## PORT 25 | SMTP(Simple Mail Transfer Protocal),
-	- Protocal: `TCP`
-	- Common Server Software:
-		- Postfix: 
-			- OS: `Unix`
-		- Qmail:
-			- OS: `Unix`
-		- TurboSMTP:
-			- OS: `Windows`
+- Protocal: `TCP`
+- Common Server Software:
+- Postfix: 
+  - OS: `Unix`
+- Qmail:
+  - OS: `Unix`
+- TurboSMTP:
+  - OS: `Windows`
 ## PORT 139 | SMB/netbios-ssn,
 	Protocal: `TCP`
 	Software (default on windows):
