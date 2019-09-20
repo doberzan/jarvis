@@ -1,4 +1,4 @@
-## PORT 21 | FTP(File Transfer Protocal),
+## PORT 21 | FTP (File Transfer Protocal)
 - Protocal: `TCP`
   - Common Server Software:
     - *vsftpd*:
@@ -11,9 +11,9 @@
       - OS: `Windows-based`
       - Guest: `None`
 	
-## PORT 25 | SMTP(Simple Mail Transfer Protocal),
+## PORT 25 | SMTP (Simple Mail Transfer Protocal)
 - Protocal: `TCP`
-- Common Server Software:
+- **Common Server Software**:
 - *Postfix*: 
   - OS: `Unix`
 - *Qmail*:
