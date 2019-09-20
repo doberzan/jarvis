@@ -1,13 +1,13 @@
 ##PORT 21 | FTP(File Transfer Protocal),
-	- Protocal: `TCP`
-	- Common Server Software:
-		- vsftpd:
-			- OS: `Unix`
-			- Guest: `anonymous anonymous`
-		- ProFTPD:
-			- OS: `Unix, Windows`
-			- Guest: `anonymous/ftp <email>`
-		- CerberusFTP:   
+- Protocal: `TCP`
+- Common Server Software:
+-- vsftpd:
+-- OS: `Unix`
+-- Guest: `anonymous anonymous`
+-- ProFTPD:
+-- OS: `Unix, Windows`
+-- Guest: `anonymous/ftp <email>`
+-- CerberusFTP:   
 			- OS: `Windows-based`
 			- Guest: `None`
 	
