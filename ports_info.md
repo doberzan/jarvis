@@ -13,19 +13,19 @@
 	
 ## PORT 25 | SMTP (Simple Mail Transfer Protocal)
 - Protocal: `TCP`
-- **Common Server Software**:
-- *Postfix*: 
-  - OS: `Unix`
-- *Qmail*:
-  - OS: `Unix`
-- *TurboSMTP*:
-  - OS: `Windows`
+  - **Common Server Software**:
+    - *Postfix*: 
+      - OS: `Unix`
+    - *Qmail*:
+      - OS: `Unix`
+    - *TurboSMTP*:
+      - OS: `Windows`
 ## PORT 139 | SMB/netbios-ssn,
-	Protocal: `TCP`
-	Software (default on windows):
-		Samba (Network Directory Sharing):
-			OS: `Unix`
-	nbtstat - Command to "debug" and gain info on a target windows machine
+- Protocal: `TCP`
+  - Software (default on windows):
+  - Samba (Network Directory Sharing):
+    - OS: `Unix`
+    - nbtstat - Command to "debug" and gain info on a target windows machine
 			
 ## PORT 1433 | MSSQL/ms-sql-s,
 	Protocal: `TCP,UDP`
