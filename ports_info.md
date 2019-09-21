@@ -1,6 +1,6 @@
-## PORT 21 | FTP (File Transfer Protocal)
+## PORT 21 | FTP (File Transfer Protocol)
 Description: This port is used to transfer files over the network.
-- Protocal: `TCP`
+- Protocol: `TCP`
   - Common Server Software:
     - *vsftpd*:
       - OS: `Unix`
@@ -12,7 +12,7 @@ Description: This port is used to transfer files over the network.
       - OS: `Windows-based`
       - Guest: `None`
 	
-## PORT 25 | SMTP (Simple Mail Transfer Protocal)
+## PORT 25 | SMTP (Simple Mail Transfer Protocol)
 Description: This port is used to receive and send emails between mail servers NOT to be confused with IMAP or POP3 which are used to send mail to clients.
 - Protocal: `TCP`
   - **Common Server Software**:
@@ -24,14 +24,14 @@ Description: This port is used to receive and send emails between mail servers N
       - OS: `Windows`
 ## PORT 139 | SMB/netbios-ssn
 Description: This port is used as a way for windows to communicate to other computers in a network. It holds lots of useful information and can be queried with 'nbtstat <params>'.
-- Protocal: `TCP`
+- Protocol: `TCP`
   - Software (default on windows):
   - Samba (Network Directory Sharing):
     - OS: `Unix`
 			
 ## PORT 1433 | MSSQL/ms-sql-s,
-	Protocal: `TCP,UDP`
-	Description: `Microsoft SQL Database query port`
+- Protocol: `TCP,UDP`
+- Description: `Microsoft SQL Database query port`
 	
 ## PORT 3260,
 ## PORT 5432,
