@@ -33,6 +33,9 @@ Description: This port is used as a way for windows to communicate to other comp
 - Protocol: `TCP,UDP`
 - Description: `Microsoft SQL Database query port`
 	
-## PORT 3260,
+## PORT 3260 | ISCSI (Internet Small Computer Systems Interface),
+- Protocol: `TCP`
+- Description: ISCSI is a service that provides network drive connectivity over a lan/wan, but the clients treat the drive as physicaly connected device.
+  - OS: `Windows`
 ## PORT 5432,
 ## PORT 9091
