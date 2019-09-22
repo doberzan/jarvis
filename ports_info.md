@@ -22,20 +22,24 @@ Description: This port is used to receive and send emails between mail servers N
       - OS: `Unix`
     - *TurboSMTP*:
       - OS: `Windows`
-## PORT 139 | SMB/netbios-ssn
+## PORT 139 | SMB/netbios-ssn (Server Message Block/Network Basic Input Output System)
 Description: This port is used as a way for windows to communicate to other computers in a network. It holds lots of useful information and can be queried with 'nbtstat <params>'.
 - Protocol: `TCP`
   - Software (default on windows):
-  - Samba (Network Directory Sharing):
-    - OS: `Unix`
+    - Samba (Network Directory Sharing):
+      - OS: `Unix`
 			
-## PORT 1433 | MSSQL/ms-sql-s,
+## PORT 1433 | MSSQL/ms-sql-s (Microsoft Structured Query Language)
 - Protocol: `TCP,UDP`
-- Description: `Microsoft SQL Database query port`
+- Description: Microsoft SQL Database query port
 	
 ## PORT 3260 | ISCSI (Internet Small Computer Systems Interface),
 - Protocol: `TCP`
 - Description: ISCSI is a service that provides network drive connectivity over a lan/wan, but the clients treat the drive as physicaly connected device.
   - OS: `Windows`
-## PORT 5432,
+## PORT 5432 | PostgreSQL
+- Protocal: `TCP`
+- Description: Serves as a SQL database similar to MSSQL but multiplatform.
+  - OS: `Windows, Unix`
+
 ## PORT 9091
