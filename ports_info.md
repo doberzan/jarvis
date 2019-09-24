@@ -38,8 +38,12 @@ Description: This port is used as a way for windows to communicate to other comp
 - Description: ISCSI is a service that provides network drive connectivity over a lan/wan, but the clients treat the drive as physicaly connected device.
   - OS: `Windows`
 ## PORT 5432 | PostgreSQL
-- Protocal: `TCP`
+- Protocol: `TCP`
 - Description: Serves as a SQL database similar to MSSQL but multiplatform.
   - OS: `Windows, Unix`
 
-## PORT 9091
+## PORT 9091 | Citrix Mapping and XMTP (XML MIME Transport Protocol) and Openfire Administration Console
+- Protocol: `TCP`
+- Citrix Description: Used to refresh, update, and query Citrix information/devices/administration
+- XMTP Description: Transport XML MIME types over network
+- Openfire Administration: Admin page for Openfire instant messaging and groupchat server.
